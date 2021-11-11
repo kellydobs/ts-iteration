@@ -18,6 +18,8 @@
 
 */
 
+import { getConstantValue } from 'typescript'
+
 /**
  * 1) Define a function named `yelling` that takes an array of
  * strings as an argument and returns a new array with all
@@ -28,8 +30,7 @@
  */
 
 function yelling(words: string[]): string[] {
-  // Replace the code below with your own code
-  return []
+  return words.map(word => word.toUpperCase())
 }
 
 /**
@@ -43,8 +44,7 @@ function yelling(words: string[]): string[] {
  */
 
 function doubleTrouble(numbers: number[]): number[] {
-  // Replace the code below with your own code
-  return []
+  return numbers.map(number => number * 2)
 }
 
 /*
@@ -57,8 +57,7 @@ function doubleTrouble(numbers: number[]): number[] {
  */
 
 function stringyIndexes(strings: string[]): string[] {
-  // Replace the code below with your own code
-  return []
+  return strings.map((str, index) => `${str} is at index ${index}`)
 }
 
 /*
@@ -70,8 +69,7 @@ function stringyIndexes(strings: string[]): string[] {
  */
 
 function onlyTheEvenSurvive(numbers: number[]): number[] {
-  // Replace the code below with your own code
-  return []
+  return numbers.filter(n => n % 2 == 0)
 }
 
 /*
@@ -83,8 +81,7 @@ function onlyTheEvenSurvive(numbers: number[]): number[] {
  */
 
 function onlyTheEvenIndexedSurvive(numbers: number[]): number[] {
-  // Replace the code below with your own code
-  return []
+  return numbers.filter((n, index) => index % 2 == 0)
 }
 
 /*
@@ -109,9 +106,13 @@ type Movie = {
   year: number
   score: number
 }
-function bestMoviesOfTheYear(movieObjectArray: Movie[], year: number): string[] {
-  // Replace the code below with your own code
-  return []
+function bestMoviesOfTheYear(
+  movieObjectArray: Movie[],
+  year: number
+): string[] {
+  return movieObjectArray
+    .filter(movie => movie.score > 90 && movie.year == year)
+    .map(movie => movie.name)
 }
 
 /*
@@ -124,10 +125,8 @@ function bestMoviesOfTheYear(movieObjectArray: Movie[], year: number): string[] 
  */
 
 function everyoneIsOdd(numbers: number[]): boolean {
-  // Replace the code below with your own code
-  return false
+  return numbers.every(n => n % 2 == 1)
 }
-
 /*
  * 8) Define a function findTheNeedle that accepts an array of
  * strings and returns the one string that contains the word
@@ -138,8 +137,7 @@ function everyoneIsOdd(numbers: number[]): boolean {
  */
 
 function findTheNeedle(strings: string[]): string {
-  // Replace the code below with your own code
-  return ''
+  return <string>strings.find(str => str.includes('needle'))
 }
 
 /*
@@ -152,8 +150,7 @@ function findTheNeedle(strings: string[]): string {
  */
 
 function findTheNeedleIndex(strings: string[]): number {
-  // Replace the code below with your own code
-  return 42
+  return strings.findIndex(str => str.includes('needle'))
 }
 
 /*
@@ -166,8 +163,9 @@ function findTheNeedleIndex(strings: string[]): number {
  */
 
 function someoneToLove(strings: string[]): boolean {
-  // Replace the code below with your own code
-  return false
+  var lengths = strings.map(s => s.length)
+
+  return lengths.includes(4)
 }
 
 /*
@@ -205,8 +203,10 @@ function someoneToLove(strings: string[]): boolean {
 
 type Hobbies = Record<string, { title: string; description: string }>
 function objectKeys(objectOfHobbies: Hobbies): string[] {
-  // Replace the code below with your own code
-  return []
+  var entries = Object.entries(objectOfHobbies)
+  var strings = entries.map(([key, value]) => key + ` - ` + value.title)
+
+  return strings
 }
 
 /**
